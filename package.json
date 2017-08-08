@@ -1,0 +1,42 @@
+{
+  "name": "ilp-cmd-tool",
+  "version": "1.0.0",
+  "description": "A command line tool to encode and decode ILP packets.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dappelt/ilp-cmd-tool.git"
+  },
+  "keywords": [
+    "ILP"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dappelt/ilp-cmd-tool/issues"
+  },
+  "homepage": "https://github.com/dappelt/ilp-cmd-tool#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^1.1.6",
+    "eslint": "^4.2.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "ghooks": "^1.2.1",
+    "validate-commit-msg": "^2.6.1"
+  },
+  "dependencies": {
+    "debug": "^2.6.8",
+    "ilp": "^11.2.3",
+    "ilp-packet": "^1.3.0",
+    "inquirer": "^3.2.1",
+    "parse-headers": "^2.0.1",
+    "yargs": "^8.0.2"
+  }
+}
