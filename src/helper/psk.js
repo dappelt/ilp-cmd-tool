@@ -26,7 +26,6 @@ module.exports.parsePsk = function (data) {
 
   const endOfHeaders = data.indexOf(DOUBLE_NEWLINE_BUFFER)
   const headersString = data.slice(PSK_PREAMBLE_BUFFER.length, endOfHeaders).toString('utf8')
-  console.log('headersString', headersString)
   const headers = parseHeaders(headersString)
   const content = data.slice(endOfHeaders + DOUBLE_NEWLINE_BUFFER.length)
 

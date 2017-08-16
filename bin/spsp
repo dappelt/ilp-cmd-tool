@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+'use strict'
+
+const spsp = require('../src/helper/spsp')
+const argvHelper = require('../src/helper/argv-helper')
+const yargs = require('yargs')
+
+yargs
+  .command({
+    command: 'quote',
+    aliases: ['q'],
+    desc: 'Make an SPSP quote.',
+    builder: {
+      'source-amount': {
+        alias: 'sa',
+        describe: 'Amount to send.',
+        type: 'number',
+        required: true
+      },
+      address: {
+        alias: 'd',
+        describe: 'Destination SPSP Address.',
+        type: 'string',
+        required: true
+      },
+      insecure: {
+        describe: 'Disables HTTPS certificate validation.',
+        type: 'boolean'
+      }
+    },
+    handler: (argv) => {
+      argvHelper.processArgv(argv)
+      spsp.quote(argv['source-amount'], argv['destination-amount'], argv.address)
+    }
+  })
+  .demandCommand()
+  .wrap(160)
+  .help('help')
+  .alias('help', 'h')
+  .argv

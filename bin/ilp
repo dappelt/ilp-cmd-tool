@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+'use strict'
+
+const yargs = require('yargs')
+const getStdin = require('get-stdin')
+
+const app = require('../src/app')
+
+yargs
+  .command({
+    command: 'deserialize <packet> [file containing the receiver secret]',
+    aliases: ['d'],
+    desc: 'Deserialize a base64-encoded ILP packet.',
+    handler: (argv) => {
+      app.deserialize(argv.packet)
+    }
+  })
+  .command({
+    command: 'serialize-payment',
+    aliases: ['sp'],
+    desc: 'Serialize an ILP packet. Possible values for <packet_type> are ilp_payment, ilqp_liquidity_request, ilqp_liquidity_response, ilqp_by_source_request, ilqp_by_source_response, ilqp_by_destination_request, ilqp_by_destination_response, or ilp_error.',
+    builder: {
+      amount: {
+        alias: 'a',
+        describe: 'Amount to send.',
+        type: 'number'
+        // required: true
+      },
+      destination: {
+        alias: 'd',
+        describe: 'Destination ILP Address.',
+        type: 'string'
+        // required: true
+      },
+      data: {
+        describe: 'Data attached to the ILP Packet.'
+      }
+    },
+    handler: (argv) => {
+      getStdin().then(stdin => {
+        app.serializePayment(stdin, argv)
+        // app.serializePayment(argv.amount, argv.destination, argv.data)
+      })
+    }
+  })
+  .demandCommand()
+  .wrap(160)
+  .help('help')
+  .alias('help', 'h')
+  .argv
